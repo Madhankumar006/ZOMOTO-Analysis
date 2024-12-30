@@ -102,7 +102,7 @@ join product p on c.product_id = p.product_id
 WHERE c.rn = 1
 ORDER BY c.userid
 
---6) 
+--6) which item was purchased first by customer after they become a member ?
 WITH cte as (
 	SELECT u.userid,u.signup_date,s.product_id,s.created_date
 	FROM sales s
@@ -114,7 +114,7 @@ SELECT *,row_number() OVER(PARTITION BY userid ORDER BY created_date) rn from ct
 WHERE rn =1 
 
 
---7 
+--7 which item was purchased just before the customer became a member?
 WITH cte as (
 	SELECT u.userid,u.signup_date,s.product_id,s.created_date
 	FROM sales s
